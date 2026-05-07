@@ -182,7 +182,14 @@
 <script>
   let subject = 'all';
   let isLoading = false;
-  let groqKey = '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';
+  let groqKey = localStorage.getItem('jee_groq_key') || '';
+  if (!groqKey) {
+  const k = prompt('Apni Groq API Key daalo:');
+  if (k && k.startsWith('gsk_')) {
+    groqKey = k;
+    localStorage.setItem('jee_groq_key', k);
+  }
+}
   const history = [];
 
   const SYSTEM = `You are an expert JEE (Joint Entrance Examination) tutor for Indian students preparing for JEE Main and JEE Advanced.
